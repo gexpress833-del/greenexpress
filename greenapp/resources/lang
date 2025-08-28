@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'welcome' => 'Bienvenue sur notre service de livraison de repas sains!',
+    'menu' => 'Menu',
+    'order' => 'Commande',
+    'subscription' => 'Abonnement',
+    'invoice' => 'Facture',
+    'status' => [
+        'pending' => 'En attente',
+        'validated' => 'Validée',
+        'delivering' => 'En livraison',
+        'delivered' => 'Livrée',
+    ],
+    'roles' => [
+        'admin' => 'Administrateur',
+        'client' => 'Client',
+        'delivery' => 'Livreur',
+    ],
+    'messages' => [
+        'order_success' => 'Votre commande a été passée avec succès!',
+        'invoice_sent' => 'Votre facture a été envoyée par WhatsApp.',
+        'delivery_code' => 'Veuillez fournir le code de livraison au livreur.',
+    ],
+];

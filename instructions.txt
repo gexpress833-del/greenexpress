@@ -1,0 +1,134 @@
+Prompt complet – Application Laravel de gestion de livraison de repas
+
+Contexte :
+Développement d’une application Laravel pour un service de livraison rapide de repas sains, intégrant Laravel + DOMPDF + Filament + Meta WhatsApp Cloud API, avec une authentification simple Laravel (pas Breeze/Jetstream).
+
+📌 Fonctionnalités principales
+1. Gestion des rôles
+
+Admin :
+
+Gère le menu (plats + prix).
+
+Gère les abonnements (Formule Secumier/Basic, Entreprise/Professionnel, Premium).
+
+Reçoit et valide les commandes.
+
+Génère automatiquement une facture PDF avec un code unique sécurisé (non prévisible : UUID ou hash).
+
+Envoie facture et code au client par WhatsApp API.
+
+Suit l’état des commandes (En attente → Validée → En livraison → Livrée).
+
+Dashboard avec statistiques : revenus, nombre de commandes, abonnements actifs, etc.
+
+Client (utilisateur final) :
+
+Peut parcourir le menu sans abonnement et commander un plat à l’unité.
+
+Peut souscrire à un abonnement (Basic / Professionnel / Premium).
+
+Peut consulter son historique de commandes et d’abonnements.
+
+Peut voir le statut d’approbation de ses commandes (en attente, validée, livrée).
+
+Reçoit automatiquement sa facture PDF + code sécurisé par WhatsApp après validation de l’admin.
+
+Livreur :
+
+Dispose d’un dashboard dédié.
+
+Consulte uniquement les commandes qui lui sont attribuées.
+
+Lors de la livraison, le client doit fournir le code sécurisé reçu pour valider la commande.
+
+Ne peut marquer une commande comme “Livrée” que si le code fourni correspond à celui généré par l’admin.
+
+Historique des livraisons effectuées.
+
+📌 Fonctionnalités avancées
+🔒 Authentification
+
+Gestion simple avec Laravel Auth (sans Breeze/Jetstream).
+
+Séparation des rôles via middleware (Admin, Client, Livreur).
+
+📄 Factures
+
+Génération avec Laravel DOMPDF.
+
+Facture inclut : informations du client, détails de la commande, montant payé, abonnement choisi (si applicable), code sécurisé unique.
+
+Stockage des factures dans le système + envoi automatique par WhatsApp.
+
+📲 Intégration WhatsApp
+
+Utilisation de Meta WhatsApp Cloud API.
+
+Envoi automatisé :
+
+Confirmation de commande
+
+Facture PDF
+
+Code unique sécurisé
+
+Notification de livraison réussie ou rejetée.
+
+📊 Dashboard
+
+Admin :
+
+Commandes totales
+
+Commandes en cours
+
+Revenus du mois
+
+Abonnements actifs
+
+Suivi des livreurs
+
+Client :
+
+Historique des commandes
+
+Abonnements en cours
+
+Statut de validation des commandes
+
+Livreur :
+
+Liste des livraisons assignées
+
+Validation par code sécurisé
+
+Historique des livraisons terminées
+
+📌 Sécurité du code sécurisé
+
+Le code fourni au client n’est pas simple (pas un PIN 1234).
+
+Généré sous forme d’UUID ou hash alphanumérique (ex : A9X4-Z7Q2-MP81).
+
+Valable une seule fois et associé à une commande précise.
+
+Validation par le livreur → met automatiquement la commande en statut "Livrée".
+
+📌 Exemple de flux utilisateur
+
+Client commande un repas ponctuel ou un abonnement.
+
+Admin reçoit la commande et valide.
+
+Admin génère une facture + code sécurisé unique.
+
+Facture et code envoyés automatiquement au client par WhatsApp.
+
+Livreur reçoit la commande dans son dashboard.
+
+Client remet le code au livreur lors de la livraison.
+
+Livreur saisit le code → si correct → commande validée comme "Livrée".
+
+Admin peut consulter toutes les statistiques dans son dashboard.
