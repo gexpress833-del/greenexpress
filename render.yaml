@@ -1,3 +1,4 @@
+
 services:
   - type: web
     name: greenapp
@@ -21,7 +22,7 @@ services:
         value: https://greenapp.onrender.com
       # Base de données
       - key: DB_CONNECTION
-        value: mysql
+        value: pgsql
       - key: DB_HOST
         fromDatabase:
           name: greenapp-db
@@ -33,7 +34,7 @@ services:
       - key: DB_DATABASE
         fromDatabase:
           name: greenapp-db
-          property: database
+          property: databaseName
       - key: DB_USERNAME
         fromDatabase:
           name: greenapp-db
