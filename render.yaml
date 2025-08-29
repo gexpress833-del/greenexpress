@@ -40,5 +40,5 @@ services:
 databases:
   - name: greenapp-db
     plan: free
-    database: greenapp
+    database: greenappdb_5t2r
     user: greenapp_user
