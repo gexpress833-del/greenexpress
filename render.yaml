@@ -1,8 +1,15 @@
-
 services:
   - type: web
     name: greenapp
     plan: free
+    env: php
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+      php artisan migrate --force
+    startCommand: php artisan serve --host=0.0.0.0 --port=10000
     envVars:
       - key: APP_ENV
         value: production
@@ -11,34 +18,34 @@ services:
       - key: APP_KEY
         generateValue: true
       - key: APP_URL
-        value: https://greenapp.onrender.com
+        value: https://greenexpress-1.onrender.com
 
-      # Variables de base de données
+      # Base de données PostgreSQL
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
         fromDatabase:
-          name: greenapp-db
+          name: greenappdb
           property: host
       - key: DB_PORT
         fromDatabase:
-          name: greenapp-db
+          name: greenappdb
           property: port
       - key: DB_DATABASE
         fromDatabase:
-          name: greenapp-db
+          name: greenappdb
           property: database
       - key: DB_USERNAME
         fromDatabase:
-          name: greenapp-db
+          name: greenappdb
           property: user
       - key: DB_PASSWORD
         fromDatabase:
-          name: greenapp-db
+          name: greenappdb
           property: password
 
 databases:
-  - name: greenapp-db
+  - name: greenappdb
     plan: free
     database: greenappdb_5t2r
     user: greenapp_user
