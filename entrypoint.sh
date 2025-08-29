@@ -1,4 +1,6 @@
 #!/bin/sh
+echo "Checking for pdo_pgsql extension..."
+php -m | grep pdo_pgsql
 php artisan config:clear
 php artisan config:cache
 php artisan route:cache
